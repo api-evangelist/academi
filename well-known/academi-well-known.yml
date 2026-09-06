@@ -1,0 +1,92 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  Live HTTP probes of the named /.well-known/ path list against every host this record knows:
+  Academi's own domain academi.com (and www), plus the successor host constellis.com wired as
+  the Website pointer. Probed 2026-09-06 with a browser User-Agent.
+name: Academi well-known discovery probe
+result: none
+note: >-
+  NOTHING WAS SERVED. Every probed path missed on every host, so no WellKnown, SecurityTxt or
+  APICatalog pointer is emitted in apis.yml - this file records a measured absence, not a
+  surface. academi.com has no working HTTPS listener at all: TLS on port 443 fails the
+  handshake (no certificate covers the hostname), so the probes below were made over port 80,
+  which answers HTTP 409 with a Cloudflare "error code: 1001" body on every path including the
+  apex - the hostname is delegated to an edge that has no site configured for it. constellis.com
+  is the successor operator's live WordPress site and returns a genuine 404 on every
+  /.well-known/ path.
+hosts:
+- host: academi.com
+  scheme: http
+  note: >-
+    HTTPS unavailable - TLS handshake failure on 443 (openssl/LibreSSL sslv3 alert handshake
+    failure). Probed over HTTP. Uniform 409 on every path including the apex and a
+    negative-control path, i.e. an unconfigured-host response, not a per-path answer.
+  documents:
+  - path: /.well-known/security.txt
+    status: 409
+  - path: /.well-known/openid-configuration
+    status: 409
+  - path: /.well-known/oauth-authorization-server
+    status: 409
+  - path: /.well-known/api-catalog
+    status: 409
+  - path: /.well-known/ai-plugin.json
+    status: 409
+  - path: /.well-known/agent-card.json
+    status: 409
+  - path: /.well-known/agent.json
+    status: 409
+  - path: /llms.txt
+    status: 409
+  - path: /openapi.json
+    status: 409
+  - path: /robots.txt
+    status: 409
+- host: www.academi.com
+  scheme: https
+  note: >-
+    Same edge as the apex. TLS handshake failure on 443; every probed path returned no HTTP
+    status at all (curl exit 35, recorded as 0).
+  documents:
+  - path: /.well-known/security.txt
+    status: 0
+  - path: /.well-known/agent-card.json
+    status: 0
+  - path: /.well-known/agent.json
+    status: 0
+  - path: /openapi.json
+    status: 0
+  - path: /.well-known/api-catalog
+    status: 0
+- host: constellis.com
+  scheme: https
+  note: >-
+    Successor operator's host (Constellis Holdings), wired as this record's Website pointer.
+    Probed for completeness; nothing found. Any surface here belongs to Constellis, not Academi.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /robots.txt
+    status: 200
+    file: null
+    note: >-
+      Served, but a robots.txt is not a discovery document and is not a WellKnown hit. Contents
+      are a WordPress default - Disallow /wp-admin/, Allow /wp-admin/admin-ajax.php,
+      Crawl-delay 10 - and it names no sitemap-hosted API surface.

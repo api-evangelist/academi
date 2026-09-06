@@ -1,17 +1,91 @@
 aid: academi
 name: Academi
-description: 'Academi is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  ACADEMI was the 2011-2014 name of the American private military, security and training
+  company founded on 26 December 1996 in North Carolina by Erik Prince and Al Clark as
+  Blackwater. It was renamed Blackwater Worldwide in October 2007 after the Nisour Square
+  shooting in Baghdad, then Xe Services LLC in February 2009. In December 2010 the training
+  business and its Moyock, North Carolina campus - the largest private training facility in
+  the United States - were bought by USTC Holdings, an investor consortium led by Forte
+  Capital Advisors and Manhattan Strategic Ventures, ending Erik Prince's involvement, and
+  the company was rebranded ACADEMI in December 2011 under chairman Red McCombs. In June 2014
+  Academi Training Center, LLC was merged with Triple Canopy, Constellis Ltd., Strategic
+  Social, Tidewater Global Services, National Strategic Protective Services and International
+  Development Solutions to form Constellis Holdings, which Apollo Global Management acquired
+  in September 2016 and which is headquartered in Herndon, Virginia. The ACADEMI brand was
+  retired in the merger: Constellis states on its own site that "Academi remains part of
+  historical, legal, and contractual records, but Constellis does not operate under the
+  Academi name", and the Moyock campus now trades as the Constellis Training Center. The
+  business sells physical services - firearms, driving, maritime, K-9, UAS/C-UAS and advanced
+  security and military training, protective security details, and logistics and complex
+  program management for United States government customers - not software. It never operated
+  a developer program, public API, SDK, webhook surface or machine-readable API specification,
+  and academi.com no longer serves a website: the domain is retained by Constellis for email
+  only. This profile is retained as a historical record; there is no API surface to enrich.
 url: https://raw.githubusercontent.com/api-evangelist/academi/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
+x-harvest-source-url: https://equityzen.com/company/academi
 x-tier: stub
-x-tier-reason: harvest
+x-tier-reason: defunct-no-api-surface
+x-status: brand-retired
+x-status-note: >-
+  ACADEMI is not a live brand. Academi Training Center, LLC was one of seven entities merged
+  into Constellis Holdings in June 2014, and Constellis' own Constellis Training Center page
+  states plainly that "Constellis does not market or conduct business under those names"
+  (Blackwater, Xe Services, Academi). The legal entity persists in contractual and federal award records
+  (SAM/HigherGov list ACADEMI Training Center, LLC, Moyock NC), but the operating surface is
+  Constellis'.
+x-founded: '1996-12-26'
+x-founders:
+- Erik Prince
+- Al Clark
+x-former-names:
+- Blackwater USA / Blackwater Worldwide (1997-2009)
+- Xe Services LLC (2009-2011)
+x-headquarters: Moyock, North Carolina, United States
+x-parent-company: constellis
+x-parent-company-note: >-
+  Constellis Holdings (Herndon, Virginia; owned by Apollo Global Management since September
+  2016). Constellis is a separate company record and its own surfaces - including the LEXSO
+  platform and the "API Integration" technology-services offering - are deliberately NOT
+  credited to Academi here.
+x-domain-status: mail-only
+x-domain-note: >-
+  academi.com is still registered (Tucows, created 1999-08-04, expiry 2027-08-04) and
+  delegated to AWS Route 53 with DNSSEC enabled, but it serves no website. Port 443 fails the
+  TLS handshake outright (no certificate covering the hostname) and port 80 returns HTTP 409
+  with a Cloudflare "error code: 1001" body on every path probed, including / , /robots.txt,
+  /llms.txt, /openapi.json and every /.well-known/ path. The domain is retained for mail:
+  Proofpoint MX records, an SPF record and a DMARC record with p=reject whose aggregate
+  reports are addressed to itsec@constellis.com - first-party confirmation that the domain is
+  administered by Constellis. No host is wired as an Academi Website pointer.
+x-api-posture: no-product-api
+x-api-posture-basis: observed
+x-api-posture-note: >-
+  No developer portal, API reference, OpenAPI/Swagger, GraphQL endpoint, AsyncAPI, hosted MCP
+  server, A2A agent card, llms.txt, first-party SDK or registry package was found on any host
+  this record knows. api., developer. and docs. under academi.com are all NXDOMAIN; npm
+  returns 0 packages for academi/constellis and PyPI 404s; github.com/Academi is an empty
+  shell organization created 2014-01-21 with 0 public repositories, no name, blog or email,
+  and is not attributable to this company. Contract discovery (pipeline-enrich STEP 0b) ran
+  every REST, GraphQL, MCP, OGC and agent-card probe against academi.com, www.academi.com and
+  the successor host constellis.com and returned nothing.
 specificationVersion: '0.20'
 created: '2026-09-06'
 modified: '2026-09-06'
 tags:
 - Company
+- Defense
+- Private Military
+- Security Services
+- Physical Security
+- Training
+- Government Contracting
+- Logistics
+- Program Management
+- Acquired
+- Brand Retired
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -19,5 +93,56 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/academi-domain-security.yml
 - type: Website
-  url: https://equityzen.com/company/academi
+  url: https://constellis.com/constellis-training-center/
+x-website:
+  status: successor-host
+  former_domain: https://academi.com
+  former_domain_status: 409
+  reason: >-
+    The harvest stub wired https://equityzen.com/company/academi as the Website pointer. That
+    is the secondary-market VENUE the company was surfaced from, not Academi's web presence
+    (roadmap#56, venue-listing-as-website), and it has been moved to x-harvest-source-url.
+    Academi's own domain academi.com serves no site (HTTP 409 / TLS handshake failure), so the
+    Website pointer now resolves to the surviving operator's page for this business -
+    Constellis' Constellis Training Center page, which is the page that documents the ACADEMI
+    name and the Moyock facility. No other Constellis page - privacy policy, terms of use,
+    contact, developer or technology-services page - is wired as an Academi pointer: those are
+    the parent company's assets and crediting them to Academi would be false credit.
+x-pointer-liveness:
+  checked: '2026-09-06'
+  method: probed
+  probes:
+  - url: https://constellis.com/constellis-training-center/
+    status: 200
+  - url: https://equityzen.com/company/academi
+    status: 200
+x-enrichment:
+  date: '2026-09-06'
+  status: minimal
+  artifacts_added: 2
+  pass: local-v3
+x-coverage:
+  state: none
+  reason: defunct
+  detail: >-
+    ACADEMI is a retired brand, not a live company - Academi Training Center, LLC was one of
+    seven entities merged into Constellis Holdings in June 2014, and Constellis states on its
+    own site that "Constellis does not operate under the Academi name" - and the domain
+    academi.com is now web-retired: port 443 fails the TLS handshake outright and port 80
+    returns HTTP 409 with a Cloudflare error-1001 body on every path, while DNS keeps only mail
+    (Proofpoint MX, SPF, DMARC p=reject reporting to itsec@constellis.com).
+  evidence:
+  - url: http://academi.com/
+    status: 409
+  - url: https://academi.com/
+    status: 0
+  - url: http://academi.com/openapi.json
+    status: 409
+  - url: https://constellis.com/constellis-training-center/
+    status: 200
+  - url: https://constellis.com/.well-known/api-catalog
+    status: 404
+  checked: '2026-09-06'

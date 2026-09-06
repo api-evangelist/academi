@@ -64,5 +64,56 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Academi is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://equityzen.com/company/academi
+**ACADEMI** was the 2011–2014 name of the American private military, security and training
+company founded on 26 December 1996 in North Carolina by Erik Prince and Al Clark as
+**Blackwater**. It was renamed **Blackwater Worldwide** in October 2007 after the Nisour Square
+shooting in Baghdad, then **Xe Services LLC** in February 2009. In December 2010 Prince sold his
+equity to **USTC Holdings** — an investor consortium led by Forté Capital Advisors and Manhattan
+Strategic Ventures — and the company was rebranded **ACADEMI** in December 2011 under chairman
+Red McCombs. In June 2014 **Academi Training Center, LLC** was merged with Triple Canopy,
+Constellis Ltd., Strategic Social, Tidewater Global Services, National Strategic Protective
+Services and International Development Solutions to form **Constellis Holdings**, acquired by
+Apollo Global Management in September 2016 and headquartered in Herndon, Virginia.
+
+**The brand is retired.** Constellis' own Constellis Training Center page states it plainly:
+
+> *"Academi remains part of historical, legal, and contractual records, but Constellis does not
+> operate under the Academi name."*
+
+> *"While the Constellis Training Center includes the facility formerly associated with
+> Blackwater, Xe Services, and Academi, Constellis does not market or conduct business under
+> those names."*
+
+The Moyock, North Carolina campus — the largest private training facility in the United States —
+now trades as the **Constellis Training Center**.
+
+**There is no Academi API surface to enrich.** The business sells physical services — firearms,
+driving, maritime, K-9, UAS/C-UAS and advanced security and military training, protective
+security details, and logistics and complex program management for US government customers — not
+software. As probed on 2026-09-06:
+
+| Probe | Result |
+|---|---|
+| `https://academi.com/` | TLS handshake failure on 443 — no certificate covers the hostname |
+| `http://academi.com/` and every path probed | `409` with a Cloudflare `error code: 1001` body — unconfigured host |
+| `http://academi.com/.well-known/*` (7 paths), `/llms.txt`, `/openapi.json`, `/robots.txt` | `409` |
+| `api.academi.com`, `developer.academi.com`, `docs.academi.com` | NXDOMAIN |
+| `academi.com` DNS | DNSSEC signed, Proofpoint MX, SPF, DMARC `p=reject` with `rua=mailto:itsec@constellis.com` — mail-retained, web-retired, administered by Constellis |
+| `https://constellis.com/.well-known/*` (successor host) | `404` on every path |
+| `https://api.github.com/orgs/academi` | `200`, but an empty shell org created 2014-01-21 — 0 repos, no name/blog/email; not attributable |
+| `https://api.github.com/orgs/constellis` | `404` |
+| npm search `academi constellis` / `https://pypi.org/pypi/academi/json` | 0 packages / `404` |
+
+Constellis (the parent) does market an *"API Integration"* technology-services offering and a
+LEXSO platform whose API-ICD documentation and sandbox are available only to partners under an
+executed MNDA. **Those are Constellis surfaces and are deliberately not credited to Academi
+here** — Constellis is a separate company record.
+
+This profile is retained as a historical record.
+
+**Sources**
+- Constellis Training Center — https://constellis.com/constellis-training-center/
+- Constellis, *Advanced Security & Military Training* — https://constellis.com/what-we-do/training-services/advanced-security-military-training/
+- Blackwater (company), Wikipedia — https://en.wikipedia.org/wiki/Blackwater_(company)
+- Constellis, Wikipedia — https://en.wikipedia.org/wiki/Constellis
+- Secondary-market listing this record was harvested from — https://equityzen.com/company/academi
