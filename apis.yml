@@ -73,7 +73,7 @@ x-api-posture-note: >-
   the successor host constellis.com and returned nothing.
 specificationVersion: '0.20'
 created: '2026-09-06'
-modified: '2026-09-06'
+modified: '2026-10-06'
 tags:
 - Company
 - Defense
@@ -93,6 +93,10 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- url: https://constellis.com/news/
+  type: Blog
+- url: https://constellis.com/feed/
+  type: BlogRSS
 - type: DomainSecurity
   url: security/academi-domain-security.yml
 - type: Website
